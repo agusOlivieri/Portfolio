@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
+@import "tailwindcss";
+
+.logo a {
+    font-family: 'Moirai One';
+}
+
+.dev-animation {
+    font-family: 'Moirai One';
+    position: relative;
+}
+
+.dev-animation::before {
+    content: '';
+    animation: appearing-letters 1s infinite;
+}
+
+.dev-animation::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 8px);
+    background: var(--color-slate-950);
+    height: 81%;
+    border-left: 3px solid var(--color-slate-950);
+    right: -8px;
+    animation: cursor 0.8s infinite, typing 20s steps(20) infinite
+}
+
+@keyframes appearing-letters {
+    0%, 100% { content: 'Web Developer.' }
+}
+
+@keyframes cursor {
+    to{ border-left: 2px solid var(--font-color) }
+}
+
+@keyframes typing {
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% { 
+        width: 0; 
+    }
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+        width: calc(100% + 8px);
+    }
+}
