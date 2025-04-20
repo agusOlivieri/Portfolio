@@ -1,6 +1,8 @@
 <script setup>
 import PortfolioHeader from '@/components/PortfolioHeader.vue';
 import Welcome from '@/components/Welcome.vue';
+import Projects from '@/components/Projects.vue';
+import SectionContainer from '@/components/SectionContainer.vue';
 </script>
 
 <template>
@@ -12,7 +14,13 @@ import Welcome from '@/components/Welcome.vue';
 
     <PortfolioHeader />
     <main>
-      <Welcome />
+      <SectionContainer clases="h-screen flex flex-col justify-center items-start gap-5" id="welcome-section">
+        <Welcome />
+      </SectionContainer>
+
+      <SectionContainer>
+        <Projects />
+      </SectionContainer>
     </main>
 </template>
 
