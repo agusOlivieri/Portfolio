@@ -29,6 +29,6 @@ const projects = [
         :title="project.title" 
         :description="project.description" 
         :technologies="project.technologies" 
-        :githubLink="project.githubLink"
+        :githubLink="project.github"
     />
 </template>
