@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
 @import "tailwindcss";
 
+html {
+    scroll-behavior: smooth;
+}
+
 .logo a {
     font-family: 'Moirai One';
 }
@@ -42,5 +46,11 @@
     }
     5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
         width: calc(100% + 8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 }
