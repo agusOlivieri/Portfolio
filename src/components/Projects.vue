@@ -24,6 +24,7 @@ const projects = [
 </script>
 
 <template>
+  <div class="pt-18">
     <h2 class="text-2xl lg:text-4xl mb-8 text-gray-100 font-semibold">Projects</h2>
     <Project v-for="(project, index) in projects" :key="index"
         :title="project.title" 
@@ -31,4 +32,5 @@ const projects = [
         :technologies="project.technologies" 
         :githubLink="project.github"
     />
+  </div>
 </template>

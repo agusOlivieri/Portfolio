@@ -3,6 +3,7 @@ import PortfolioHeader from '@/components/PortfolioHeader.vue';
 import Welcome from '@/components/Welcome.vue';
 import Projects from '@/components/Projects.vue';
 import SectionContainer from '@/components/SectionContainer.vue';
+import AboutMe from '@/components/AboutMe.vue';
 </script>
 
 <template>
@@ -21,6 +22,10 @@ import SectionContainer from '@/components/SectionContainer.vue';
       <div class="bg-gray-950">
         <SectionContainer class="" id="projects-section">
           <Projects />
+        </SectionContainer>
+
+        <SectionContainer class="h-screen" id="about-me">
+          <AboutMe />
         </SectionContainer>
       </div>
     </main>
