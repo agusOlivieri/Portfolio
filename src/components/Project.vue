@@ -1,6 +1,7 @@
 <script setup>
+import Tailwind from '@/assets/icons/Tailwind.vue';
 
-defineProps({
+const props = defineProps({
     title: {
         type: String
     },
@@ -8,12 +9,14 @@ defineProps({
         type: String
     },
     technologies: {
-        type: Array
+        type: Array,
     },
     githubLink: {
         type: String
     }
 })
+
+console.log(props.technologies.icon)
 
 </script>
 
@@ -25,9 +28,10 @@ defineProps({
             
             <ul class="flex gap-x-4 mb-2">
                 <li v-for="tech in technologies">
-                    <span class="flex gap-x-1 rounded-full text-xs flex-wrap items-center bg-slate-800 px-2 py-1">
-                        <div class="size-5 rounded-full bg-white"></div>
-                        {{ tech }}
+                    <span :class="`flex gap-x-1 rounded-full text-xs flex-wrap items-center ${tech.class} px-2 py-1`">
+                        <!-- <div class="size-5 rounded-full bg-white"></div> -->
+                        <component :is="tech.icon" class="size-4" />
+                        {{ tech.name }}
                     </span>
                 </li>
             </ul>

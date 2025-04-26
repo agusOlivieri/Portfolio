@@ -1,23 +1,32 @@
 <script setup>
 import Project from '@/components/Project.vue';
+import Tailwind from '@/assets/icons/Tailwind.vue';
+
+const TAGS = {
+    TAILWIND: {
+        name: "Tailwind CSS",
+        class: "bg-[#003159] text-white",
+        icon: Tailwind
+    }
+}
 
 const projects = [
   {
     title: "To-Do App",
     description: "Una aplicación simple para gestionar tareas con almacenamiento local.",
-    technologies: ["Vue.js", "TailwindCSS", "LocalStorage"],
+    technologies: [TAGS.TAILWIND],
     github: "https://github.com/tuusuario/todo-app"
   },
   {
     title: "Weather Dashboard",
     description: "App para consultar el clima en tiempo real usando una API externa.",
-    technologies: ["Vue 3", "Axios", "OpenWeather API"],
+    technologies: [TAGS.TAILWIND],
     github: "https://github.com/tuusuario/weather-dashboard"
   },
   {
     title: "E-commerce Layout",
     description: "Diseño responsivo para una tienda online, con carrito funcional.",
-    technologies: ["Vue.js", "Pinia", "TailwindCSS"],
+    technologies: [TAGS.TAILWIND],
     github: "https://github.com/tuusuario/ecommerce-layout"
   }
 ];
