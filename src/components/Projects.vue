@@ -1,12 +1,18 @@
 <script setup>
 import Project from '@/components/Project.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
+import Vue from '@/assets/icons/Vue.vue';
 
 const TAGS = {
     TAILWIND: {
         name: "Tailwind CSS",
         class: "bg-[#003159] text-white",
         icon: Tailwind
+    },
+    VUE: {
+      name: "Vue.js",
+      class: "bg-gray-800 text-white",
+      icon: Vue
     }
 }
 
@@ -14,7 +20,7 @@ const projects = [
   {
     title: "To-Do App",
     description: "Una aplicación simple para gestionar tareas con almacenamiento local.",
-    technologies: [TAGS.TAILWIND],
+    technologies: [TAGS.TAILWIND, TAGS.VUE],
     github: "https://github.com/tuusuario/todo-app"
   },
   {
