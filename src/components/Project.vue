@@ -8,6 +8,9 @@ const props = defineProps({
     description: {
         type: String
     },
+    image: {
+        type: String
+    },
     technologies: {
         type: Array,
     },
@@ -16,7 +19,7 @@ const props = defineProps({
     }
 })
 
-console.log(props.technologies.icon)
+// console.log(props.image)
 
 </script>
 
@@ -35,8 +38,11 @@ console.log(props.technologies.icon)
                     </span>
                 </li>
             </ul>
-    
-            <div class="mb-10 h-[400px] text-red-800 bg-white/65 rounded-4xl text-center flex justify-center items-center">Imagen de proyecto</div>
+            
+            <div class="relative p-3 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border-2 lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+                <img :src="image" class="rounded-xl"/>
+                <!-- <div class="h-[400px] bg-white/25 text-red-800 rounded-4xl text-center flex justify-center items-center">Imagen de proyecto</div> -->
+            </div>
     
             <a :href="githubLink" target="_blank" rel="noopener noreferrer">
                 <i></i>
