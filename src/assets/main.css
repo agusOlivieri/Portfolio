@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
 @import "tailwindcss";
+@import 'primeicons/primeicons.css';
 
 html {
     scroll-behavior: smooth;

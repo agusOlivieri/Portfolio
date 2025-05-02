@@ -2,7 +2,7 @@
 import Project from '@/components/Project.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
 import Vue from '@/assets/icons/Vue.vue';
-import sintacc from '@/assets/images/sintacc-project.png'
+import sintacc from '@/assets/images/sintacc-project.png';
 
 const TAGS = {
     TAILWIND: {
