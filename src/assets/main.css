@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');@import "tailwindcss";
 @import 'primeicons/primeicons.css';
 
 html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
 .logo a {
     font-family: 'Moirai One';
+    font-weight: 100;
 }
 
 .dev-animation {
