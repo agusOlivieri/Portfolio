@@ -59,7 +59,7 @@ const TECHNOLOGIES = {
             I remember the first time I watched <span class="text-red-600">Iron Man 1</span> as a little kid, that was when I first knew <span class="italic">Tony Stark</span> and his superhero iron suits, since then, apart from becoming a Marvel fan, I had become<span class="text-blue-400"> obsessed with technology</span> 💻. 
         </p>
         <p class="text-xl mb-8">
-            Later on, I discovered that my dream was to <span class="text-yellow-500">become an <span class="text-yellow-400 font-bold">engineer</span></span> 👷, so now I am studying <span class="font-semibold italic text-white">Software Engineering</span>✏and very soon will graduate from college!
+            Later on, I discovered that my dream was to <span class="text-yellow-500">become an <span class="text-yellow-400 font-bold">engineer</span></span> 👷, so now I am studying <span class="font-semibold italic text-white">Software Engineering</span> 🖊 and very soon will graduate from college!
         </p>
         <h3 class="text-xl mb-4 text-white text-pretty">
             <i class="pi pi-microchip me-1" style="font-size: 1.35rem;"></i>
