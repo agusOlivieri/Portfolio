@@ -44,7 +44,10 @@ const projects = [
 
 <template>
   <div class="pt-18">
-    <h2 class="text-2xl lg:text-4xl mb-8 text-gray-100 font-semibold">Projects</h2>
+    <div class="flex items-center mb-8 gap-x-2">
+      <i class="pi pi-code mt-1" style="font-size: 2rem"></i>
+      <h2 class="text-2xl lg:text-4xl text-gray-100 font-semibold">Projects</h2>
+    </div>
     <Project v-for="(project, index) in projects" :key="index"
         :title="project.title" 
         :description="project.description"
