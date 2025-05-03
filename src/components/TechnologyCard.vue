@@ -13,8 +13,8 @@ defineProps({
 </script>
 
 <template>
-    <div class="size-30 bg-red-950/35 flex flex-col justify-evenly items-center text-xs rounded-sm">
-        <span :class="`flex gap-x-1 rounded-full text-xs flex-wrap items-center ${classes} px-2 py-1`">
+    <div class="size-30 bg-blue-950/30 hover:bg-blue-950/50 transition text-xs flex flex-col justify-evenly items-center text-center rounded-sm">
+        <span :class="`rounded-full ${classes}`">
             <component :is="logo" class="size-8" />
         </span>
         {{ name }}
