@@ -24,7 +24,7 @@ import AboutMe from '@/components/AboutMe.vue';
           <Projects />
         </SectionContainer>
 
-        <SectionContainer class="h-screen" id="about-me">
+        <SectionContainer class="" id="about-me">
           <AboutMe />
         </SectionContainer>
       </div>
