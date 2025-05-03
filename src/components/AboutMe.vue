@@ -61,12 +61,16 @@ const TECHNOLOGIES = {
         <p class="text-xl mb-8">
             Later on, I discovered that my dream was to <span class="text-yellow-500">become an <span class="text-yellow-400 font-bold">engineer</span></span> 👷, so now I am studying <span class="font-semibold italic text-white">Software Engineering</span>✏and very soon will graduate from college!
         </p>
-        <div class="flex gap-x-2">
+        <h3 class="text-xl mb-4 text-white text-pretty">
+            <i class="pi pi-microchip me-1" style="font-size: 1.35rem;"></i>
+            This is the tech stack I have been educating myself throughout my college degree:
+        </h3> 
+        <!-- <div class="flex gap-x-2">
             <i class="pi pi-microchip mt-1" style="font-size: 1.5rem;"></i>
             <h3 class="text-xl mb-4 text-white">
                 This is the tech stack I have been educating myself throughout my college degree:
             </h3>
-        </div>    
+        </div>     -->
         <div class="bg-black/50 rounded-xl px-16 py-8 flex flex-wrap gap-6">
             <TechnologyCard v-for="(tech, index) in TECHNOLOGIES" :key="index"
               :name="tech.name"
