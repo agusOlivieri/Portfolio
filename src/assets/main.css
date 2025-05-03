@@ -26,7 +26,7 @@ html {
     width: calc(100% + 8px);
     background: var(--color-gray-950);
     /* background: white; */
-    height: 82%;
+    height: 120%;
     /* border-left: 3px solid var(--color-slate-950); */
     border-left: 3px solid var(--color-yellow-400);
     right: -8px;
@@ -34,7 +34,7 @@ html {
 }
 
 @keyframes appearing-letters {
-    0%, 100% { content: 'Web Developer.' }
+    0%, 100% { content: 'Software Developer.' }
 }
 
 @keyframes cursor {
