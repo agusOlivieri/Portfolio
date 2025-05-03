@@ -65,12 +65,6 @@ const TECHNOLOGIES = {
             <i class="pi pi-microchip me-1" style="font-size: 1.35rem;"></i>
             This is the tech stack I have been educating myself throughout my college degree:
         </h3> 
-        <!-- <div class="flex gap-x-2">
-            <i class="pi pi-microchip mt-1" style="font-size: 1.5rem;"></i>
-            <h3 class="text-xl mb-4 text-white">
-                This is the tech stack I have been educating myself throughout my college degree:
-            </h3>
-        </div>     -->
         <div class="bg-black/50 rounded-xl px-16 py-8 flex flex-wrap gap-6">
             <TechnologyCard v-for="(tech, index) in TECHNOLOGIES" :key="index"
               :name="tech.name"
