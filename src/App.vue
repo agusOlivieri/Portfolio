@@ -4,6 +4,7 @@ import Welcome from '@/components/Welcome.vue';
 import Projects from '@/components/Projects.vue';
 import SectionContainer from '@/components/SectionContainer.vue';
 import AboutMe from '@/components/AboutMe.vue';
+import ContactMe from '@/components/ContactMe.vue';
 </script>
 
 <template>
@@ -27,7 +28,9 @@ import AboutMe from '@/components/AboutMe.vue';
         <SectionContainer class="" id="about-me">
           <AboutMe />
         </SectionContainer>
+
       </div>
     </main>
+    <ContactMe />
 </template>
 

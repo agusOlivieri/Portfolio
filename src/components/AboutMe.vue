@@ -52,7 +52,7 @@ const TECHNOLOGIES = {
 <template>
     <div class="py-18 text-gray-200">
         <div class="flex items-center mb-8 gap-x-2">
-            <i class="pi pi-face-smile mt-1" style="font-size: 2rem"></i>
+            <i class="pi pi-face-smile" style="font-size: 2rem"></i>
             <h2 class="text-2xl lg:text-4xl font-semibold text-white">A little bit about myself</h2>
         </div>
         <p class="text-xl mb-3">
