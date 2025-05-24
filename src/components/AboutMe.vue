@@ -1,5 +1,5 @@
 <script setup>
-import TechnologyCard from '@/Components/TechnologyCard.vue';
+import TechnologyCard from '@/components/TechnologyCard.vue';
 import Vue from '@/assets/icons/Vue.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
 import Mysql from '@/assets/icons/Mysql.vue';
