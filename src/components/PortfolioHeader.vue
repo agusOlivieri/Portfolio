@@ -21,13 +21,13 @@ const menuOpen = ref(false)
             </button>
   
         <!-- Menú principal -->
-            <nav class="hidden sm:flex h-full">
-            <ul class="flex text-md md:text-xl font-semibold h-full">
-                <li><a href="#welcome-section" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Home</a></li>
-                <li><a href="#projects-section" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Projects</a></li>
-                <li><a href="#about-me" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">About me</a></li>
-                <li><a href="#contact-me" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Contact me!</a></li>
-            </ul>
+            <nav class="hidden sm:flex h-full text-white">
+              <ul class="flex text-md md:text-xl font-semibold h-full">
+                  <li><a href="#welcome-section" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Home</a></li>
+                  <li><a href="#projects-section" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Projects</a></li>
+                  <li><a href="#about-me" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">About me</a></li>
+                  <li><a href="#contact-me" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition">Contact me!</a></li>
+              </ul>
             </nav>
         </div>
   
@@ -36,7 +36,7 @@ const menuOpen = ref(false)
         </transition>
 
         <transition name="slide">
-            <aside v-if="menuOpen" class="fixed top-0 left-0 w-64 h-full z-50 shadow-lg p-6 flex flex-col gap-4">
+            <aside v-if="menuOpen" class="fixed top-0 left-0 w-64 h-full z-50 shadow-lg p-6 flex flex-col gap-4 text-white">
                 <button @click="menuOpen = false" class="self-end mb-4 text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
