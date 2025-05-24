@@ -24,7 +24,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="rounded-2xl p-6 flex flex-col">
+    <div class="rounded-2xl md:p-4 flex flex-col">
         <div class="mb-16">
             <div class="relative p-2 md:p-6 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl border-2 border-gray-800 hover:border-gray-700 hover:bg-gray-800/50">
 
@@ -45,7 +45,7 @@ const props = defineProps({
                     <!-- <div class="h-[400px] bg-white/25 text-red-800 rounded-4xl text-center flex justify-center items-center">Imagen de proyecto</div> -->
 
                 
-                <ul class="flex gap-x-4 mt-2 justify-end text-xs md:text-sm">
+                <ul class="flex gap-x-4 mt-2 justify-end md:text-lg text-sm">
                     <a :href="githubLink" target="_blank" rel="noopener noreferrer" class="flex items-center gap-x-1 bg-white/15 px-2 py-1 rounded-full hover:bg-white/30 transition" >
                         <Github class="size-4"/>
                         Repository
