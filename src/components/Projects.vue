@@ -45,8 +45,8 @@ const projects = [
 <template>
   <div class="pt-18">
     <div class="flex items-center mb-8 gap-x-2">
-      <i class="pi pi-code mt-1" style="font-size: 2rem"></i>
-      <h2 class="text-2xl lg:text-4xl text-gray-100 font-semibold">Projects</h2>
+      <i class="pi pi-code code-icon"></i>
+      <h2 class="text-2xl md:text-4xl text-gray-100 font-semibold">Projects</h2>
     </div>
     <Project v-for="(project, index) in projects" :key="index"
         :title="project.title" 
@@ -57,3 +57,11 @@ const projects = [
     />
   </div>
 </template>
+
+<style scoped>
+@media (width >= 48rem) {
+  .code-icon {
+    font-size: 2rem;
+  }
+}
+</style>
