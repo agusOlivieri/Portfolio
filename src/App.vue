@@ -30,6 +30,8 @@ import ContactMe from '@/components/ContactMe.vue';
 
       </div>
     </main>
-    <ContactMe />
+    <section id="contact-me">
+      <ContactMe />
+    </section>
 </template>
 
