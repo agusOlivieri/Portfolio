@@ -21,10 +21,6 @@
                     <i class="pi pi-instagram hover:scale-115 transition" style="font-size: 1.75rem; color: whitesmoke"></i>
                 </a>
 
-                <a href="mailto:agustinolivieri30@gmail.com?subject=Contacto%20desde%20tu%20portfolio&body=Hello%20[Agustin],%20I%interested%C3%B3%20in%20your%20work..." rel="noopener noreferrer">
-                    <i class="pi pi-at hover:scale-115 transition" style="font-size: 1.75rem; color: whitesmoke"></i>
-                </a>
-
                 <p class="text-sm flex flex-col items-center gap-x-1">
                     Or you can write to this email:
                     <span class="font-mono select-all text-blue-400">agustinolivieri30@gmail.com</span>
