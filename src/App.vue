@@ -16,7 +16,7 @@ import ContactMe from '@/components/ContactMe.vue';
     <PortfolioHeader />
 
     <main>
-      <SectionContainer clases="h-screen flex flex-col justify-center items-start gap-5" id="welcome-section">
+      <SectionContainer class="h-screen flex flex-col justify-center items-start gap-5" id="welcome-section">
         <Welcome />
       </SectionContainer>
       <div class="bg-gray-950">
@@ -28,10 +28,19 @@ import ContactMe from '@/components/ContactMe.vue';
           <AboutMe />
         </SectionContainer>
 
+        <div class="relative bg-gray-950">
+          <!-- Gradiente inferior -->
+          <div
+            class="absolute top-0 z-4 min-h-screen w-full bg-gray-950
+            bg-[radial-gradient(ellipse_80%_80%_at_50%_135%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+          >
+            <SectionContainer class="h-screen flex flex-col justify-center items-center gap-5" id="contact-me">
+              <ContactMe />
+            </SectionContainer>
+        
+          </div>
+        </div>
       </div>
     </main>
-    <section id="contact-me">
-      <ContactMe />
-    </section>
 </template>
 
