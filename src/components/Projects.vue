@@ -6,7 +6,7 @@ import sintacc from '@/assets/images/sintacc-project.png';
 
 const TAGS = {
     TAILWIND: {
-        name: "Tailwind CSS",
+        name: "Tailwind CSS v4",
         class: "bg-[#003159] text-white",
         icon: Tailwind
     },
@@ -14,16 +14,37 @@ const TAGS = {
       name: "Vue.js",
       class: "bg-gray-800 text-white",
       icon: Vue
+    },
+    NEXTJS: {
+      name: "Next.js",
+      class: "bg-gray-800 text-white",
+      icon: null
+    },
+    TYPESCRIPT: {
+      name: "TypeScript",
+      class: "bg-blue-600 text-white",
+      icon: null
+    },
+    SUPABASE: {
+      name: "Supabase (PostgreSQL + Storage)",
+      class: "bg-green-600 text-white",
+      icon: null
+    },
+    VERCEL: {
+      name: "Vercel",
+      class: "bg-black text-white",
+      icon: null
     }
 }
 
 const projects = [
   {
-    title: "To-Do App",
-    description: "Una aplicación simple para gestionar tareas con almacenamiento local.",
-    technologies: [TAGS.TAILWIND, TAGS.VUE],
+    title: "Good Vibes ✦ Bagues Online Store",
+    description: "A lightweight e-commerce platform for a beauty and wellness brand. Customers can browse the public catalog with category and brand filters, view featured products in an animated slider, and place orders directly via WhatsApp. The admin panel, protected with Google OAuth, allows full product and combo management with built-in image uploads.",
+    technologies: [TAGS.NEXTJS, TAGS.TYPESCRIPT, TAGS.SUPABASE, TAGS.TAILWIND, TAGS.VERCEL],
     img: sintacc,
-    github: "https://github.com/tuusuario/todo-app"
+    github: "https://github.com/agusOlivieri/bagues-ecommerce",
+    live: "https://bagues-ecommerce.vercel.app/"
   },
   {
     title: "Weather Dashboard",
@@ -54,6 +75,7 @@ const projects = [
         :image="project.img" 
         :technologies="project.technologies" 
         :githubLink="project.github"
+        :liveLink="project.live"
     />
   </div>
 </template>
