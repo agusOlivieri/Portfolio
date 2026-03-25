@@ -59,7 +59,7 @@
             <div class="animate-slide-up" style="animation-delay: 160ms;">
                 <p class="text-sm md:text-base leading-relaxed font-light
                            text-white/45 max-w-sm md:max-w-md">
-                    Take a look at my work 
+                    Take a look at my work !
                 </p>
             </div>
 
