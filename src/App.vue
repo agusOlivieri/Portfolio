@@ -14,28 +14,31 @@ const lineVisible = ref(false);
 function updateLine() {
   const welcome = document.getElementById('welcome-section')
   const contact = document.getElementById('contact-me')
-  if (!welcome || !contact) return
+  const main = document.querySelector('main')
+  if (!welcome || !contact || !main) return
 
-  const startY = welcome.offsetTop + welcome.offsetHeight
-  const endY = contact.offsetTop + contact.offsetHeight
+  const mainTop = main.getBoundingClientRect().top + window.scrollY
+
+  const startY = welcome.getBoundingClientRect().bottom + window.scrollY
+  const endY = contact.getBoundingClientRect().bottom + window.scrollY
 
   // El scroll "activo" es el scroll actual + altura de ventana
   const scrollProgress = window.scrollY + window.innerHeight
 
   const progress = Math.min(Math.max((scrollProgress - startY) / (endY - startY), 0), 1)
 
-  lineTop.value = startY
+  lineTop.value = startY / 2 - mainTop
   lineHeight.value = progress * (endY - startY)
   lineVisible.value = progress > 0
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', updateLine, { passive: true });
-  updateLine();
+  window.addEventListener('scroll', updateLine, { passive: true })
+  updateLine()
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateLine);
+  window.removeEventListener('scroll', updateLine)
 })
 
 </script>
@@ -52,7 +55,7 @@ onUnmounted(() => {
 
       <!-- Línea de progreso -->
        <div
-        v-if="lineaVisible"
+        v-if="lineVisible"
         class="absolute left-1/4 w-px bg-white/30 z-50 pointer-events-none"
         :style="{ top: `${lineTop}px`, height: `${lineHeight}px` }"
        >
@@ -75,14 +78,13 @@ onUnmounted(() => {
         <div class="relative bg-gray-950">
           <!-- Gradiente inferior -->
           <div
-            class="absolute top-0 z-4 min-h-screen w-full bg-gray-950
+            class="absolute inset-0 z-0 pointer-events-none
             bg-[radial-gradient(ellipse_80%_80%_at_50%_135%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-          >
-            <SectionContainer class="h-screen flex flex-col justify-center items-center gap-5" id="contact-me">
-              <ContactMe />
-            </SectionContainer>
+          ></div>
+          <SectionContainer class="h-screen flex flex-col justify-center items-center gap-5" id="contact-me">
+            <ContactMe />
+          </SectionContainer>
         
-          </div>
         </div>
       </div>
     </main>
