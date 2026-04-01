@@ -13,7 +13,7 @@
         <!-- ── Contenido principal ── -->
         <div class="flex flex-col gap-6 md:gap-8 pl-0 lg:pl-8">
 
-            <!-- Avatar + badge de estado -->
+            <!-- Avatar -->
             <div class="flex items-center gap-4 animate-slide-up" style="animation-delay: 0ms;">
                 <div class="relative">
                     <!-- Glow ring -->
@@ -27,40 +27,22 @@
                     <div class="absolute -inset-[3px] rounded-full bg-gradient-to-br from-violet-400/60 via-transparent to-violet-700/30"
                          aria-hidden="true"></div>
                     <img
-                        src="../assets/images/owner.jpg"
+                        src="../assets/images/avatar_generated.png"
                         alt="Profile picture"
                         class="relative w-16 h-16 md:w-30 md:h-30 rounded-full object-cover"
                     />
-                </div>
-
-                <!-- Badge "disponible" -->
-                <div class="flex flex-col gap-1">
-                    <span class="inline-flex items-center gap-2 text-xs font-medium tracking-wide
-                                 text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20
-                                 px-3 py-1 rounded-full w-fit">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping-slow"></span>
-                        Disponible para proyectos
-                    </span>
                 </div>
             </div>
 
             <!-- Headline -->
             <div class="animate-slide-up" style="animation-delay: 80ms;">
-                <h1 class="font-serif w-xl text-3xl md:text-4xl lg:text-5xl
+                <h1 class="w-xl text-3xl md:text-4xl lg:text-5xl
                            font-normal leading-[1.05] tracking-tight text-white/90">
                     Hi, my name is Agustin <br />
                     and I am a
                     <br class="hidden sm:block" />
                     <span class="shimmer-text text-yellow-400 italic">Software Developer</span>
                 </h1>
-            </div>
-
-            <!-- Subtítulo editorial -->
-            <div class="animate-slide-up" style="animation-delay: 160ms;">
-                <p class="text-sm md:text-base leading-relaxed font-light
-                           text-white/45 max-w-sm md:max-w-md">
-                    Take a look at my work !
-                </p>
             </div>
 
             <!-- CTA scroll -->
@@ -76,7 +58,7 @@
                                transition-all duration-500 ease-out"
                         aria-hidden="true"
                     ></span>
-                    See projects
+                    Take a look to my work!
                     <i class="pi pi-arrow-down text-xs opacity-60 group-hover:opacity-100
                                group-hover:translate-y-0.5 transition-all duration-300"></i>
                 </a>
@@ -88,9 +70,9 @@
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
-.font-serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+/* .font-serif { font-family: 'DM Serif Display', Georgia, serif; } */
 
 /* Entrada: fade + slide up */
 @keyframes slideUp {
