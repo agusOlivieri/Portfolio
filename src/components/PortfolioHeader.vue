@@ -1,9 +1,17 @@
 <script setup>
-import { onMounted, ref, onBeforeMount } from 'vue'
-const menuOpen = ref(false)
-const currentSection = ref('#')
+import { onMounted, onBeforeUnmount, ref } from 'vue'
+
+const menuOpen      = ref(false)
+const currentSection = ref('#welcome-section')
 
 let observer = null
+
+const navLinks = [
+  { id: '#welcome-section',  label: '[HOME]' },
+  { id: '#projects-section', label: '[PROJECTS]' },
+  { id: '#about-me',         label: '[ABOUT]' },
+  { id: '#contact-me',       label: '[CONTACT]' },
+]
 
 onMounted(() => {
   const sections = document.querySelectorAll('section[id]')
@@ -16,150 +24,103 @@ onMounted(() => {
         }
       })
     },
-    {
-      root: null,
-      threshold: 0.2
-    }
+    { root: null, threshold: 0.3 }
   )
 
   sections.forEach((sec) => observer.observe(sec))
 })
 
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
 </script>
 
 <template>
-    <header class="w-full py-2 fixed top-0 z-10">
-        <div class="max-w-6xl mx-auto flex justify-center items-center h-14 px-4">
-        <!-- Botón hamburguesa -->
-            <button @click="menuOpen = !menuOpen" class="sm:hidden text-gray-700 focus:outline-none me-auto">
-            <svg v-if="!menuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-            </button>
-  
-        <!-- Menú principal -->
-            <nav class="hidden sm:flex h-full text-white">
-              <ul class="flex text-md md:text-xl font-semibold h-full">
-                  <li>
-                    <a
-                      href="#welcome-section"
-                      @click="currentSection = '#welcome-section'"
-                      :class="[
-                        'flex justify-center items-center h-full w-26 md:w-32 p-1 transition',
-                        currentSection === '#welcome-section' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                      ]"
-                    >Home</a>
-                  </li>
-                  <li>
-                    <a
-                      href="#projects-section"
-                      @click="currentSection = '#projects-section'"
-                      :class="[
-                        'flex justify-center items-center h-full w-26 md:w-32 p-1 transition',
-                        currentSection === '#projects-section' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                      ]"
-                    >Projects</a>
-                  </li>
-                  <li>
-                    <a 
-                      href="#about-me"
-                      @click="currentSection = '#about-me'"
-                      :class="[
-                        'flex justify-center items-center h-full w-26 md:w-32 p-1 transition',
-                        currentSection === '#about-me' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                      ]" 
-                    >About me</a>
-                  </li>
-                  <li>
-                    <a 
-                      href="#contact-me" class="flex justify-center items-center h-full w-26 md:w-32 p-1 hover:text-yellow-500 transition"
-                      @click="currentSection = '#contact-me'"
-                      :class="[
-                        'flex justify-center items-center h-full w-26 md:w-32 p-1 transition',
-                        currentSection === '#contact-me' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                      ]" 
-                    >Contact me!</a>
-                  </li>
-              </ul>
-            </nav>
-        </div>
-  
-        <transition name="fade">
-        <div v-if="menuOpen" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" @click="menuOpen = false"></div>
-        </transition>
+  <header
+    class="w-full fixed top-0 z-10"
+    style="background: rgba(10,10,15,0.93); border-bottom: 2px solid #bd00ff; backdrop-filter: blur(8px);"
+  >
+    <div class="max-w-6xl mx-auto flex justify-between items-center h-14 px-4">
 
-        <transition name="slide">
-            <aside v-if="menuOpen" class="fixed top-0 left-0 w-64 h-full z-50 shadow-lg p-6 flex flex-col gap-4 text-white">
-                <button @click="menuOpen = false" class="self-end mb-4 text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-                <a 
-                  href="#welcome-section"
-                  @click="menuOpen = false; currentSection='#welcome-section'"
-                  :class="[
-                    'text-lg font-semibold transition',
-                    currentSection === '#welcome-section' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                  ]" 
-                >Home</a>
-                <a 
-                  href="#projects-section"
-                  @click="menuOpen = false; currentSection='#projects-section'" 
-                  :class="[
-                    'text-lg font-semibold transition',
-                    currentSection === '#projects-section' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                  ]" 
-                >Projects</a>
-                <a 
-                  href="#about-me" 
-                  @click="menuOpen = false; currentSection='#aboutme-section'" 
-                  :class="[
-                    'text-lg font-semibold transition',
-                    currentSection === '#aboutme-section' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                  ]"                   
-                >About me</a>
-                <a 
-                  href="#contact-me" 
-                  @click="menuOpen = false; currentSection='contact-me'"
-                  :class="[
-                    'text-lg font-semibold transition',
-                    currentSection === 'contact-me' ? 'text-yellow-500' : 'text-white hover:text-yellow-500'
-                  ]"                    
-                >Contact me!</a>
-            </aside>
-        </transition>
-    </header>
-  </template>
+      <!-- Logo / System ID -->
+      <div class="font-pixel text-terminal text-[8px] md:text-[9px] tracking-wider">
+        <span class="blink mr-1">▶</span>AO://PORTFOLIO
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button
+        @click="menuOpen = !menuOpen"
+        class="sm:hidden text-terminal focus:outline-none p-1"
+        aria-label="Toggle menu"
+      >
+        <svg v-if="!menuOpen" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Desktop nav -->
+      <nav class="hidden sm:flex h-full items-center">
+        <a
+          v-for="link in navLinks"
+          :key="link.id"
+          :href="link.id"
+          @click="currentSection = link.id"
+          class="font-retro text-sm md:text-base px-4 md:px-5 h-full flex items-center transition-all duration-200"
+          :class="currentSection === link.id
+            ? 'text-pixel-bg bg-terminal font-bold'
+            : 'text-terminal hover:bg-terminal/10'"
+        >
+          {{ link.label }}
+        </a>
+      </nav>
+    </div>
+
+    <!-- Mobile overlay -->
+    <Transition name="fade">
+      <div
+        v-if="menuOpen"
+        class="fixed inset-0 bg-black/75 z-40"
+        @click="menuOpen = false"
+      ></div>
+    </Transition>
+
+    <!-- Mobile drawer -->
+    <Transition name="slide">
+      <aside
+        v-if="menuOpen"
+        class="fixed top-0 left-0 w-64 h-full z-50 flex flex-col"
+        style="background: rgba(10,10,15,0.97); border-right: 2px solid #bd00ff;"
+      >
+        <div class="terminal-header">
+          ■ NAVIGATION.EXE
+          <button @click="menuOpen = false" class="ml-auto text-pixel-bg">✕</button>
+        </div>
+        <div class="p-4 flex flex-col gap-2">
+          <a
+            v-for="link in navLinks"
+            :key="link.id"
+            :href="link.id"
+            @click="menuOpen = false; currentSection = link.id"
+            class="font-retro text-base px-3 py-3 transition-all duration-200"
+            :class="currentSection === link.id
+              ? 'text-pixel-bg bg-terminal'
+              : 'text-terminal hover:bg-terminal/10 border border-transparent hover:border-terminal/30'"
+          >
+            {{ link.label }}
+          </a>
+        </div>
+      </aside>
+    </Transition>
+  </header>
+</template>
 
 <style scoped>
-/* Transiciones */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
+.fade-enter-active, .fade-leave-active { transition: opacity 0.2s ease; }
+.fade-enter-from, .fade-leave-to       { opacity: 0; }
 
-.slide-enter-active, .slide-leave-active {
-  transition: transform 0.3s ease;
-}
-.slide-enter-from {
-  transform: translateX(-100%);
-}
-.slide-leave-to {
-  transform: translateX(-100%);
-}
+.slide-enter-active, .slide-leave-active { transition: transform 0.28s ease; }
+.slide-enter-from, .slide-leave-to       { transform: translateX(-100%); }
 </style>

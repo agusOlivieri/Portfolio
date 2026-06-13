@@ -5,86 +5,61 @@ import Projects from '@/components/Projects.vue';
 import SectionContainer from '@/components/SectionContainer.vue';
 import AboutMe from '@/components/AboutMe.vue';
 import ContactMe from '@/components/ContactMe.vue';
-import { onMounted, onUnmounted, ref, nextTick } from 'vue';
+import { onMounted, onUnmounted, ref, nextTick, computed } from 'vue';
 
 const lineTop    = ref(0);
 const lineHeight = ref(0);
+const activeIndex = ref(0);
 
-// Alturas-objetivo en coordenadas de documento (relativas al top de <main>).
-// Se calculan una vez al montar (y al hacer resize).
-let targets = { projects: 0, about: 0, contact: 0 };
+let mainTopOffset = 0;
+const SECTIONS = ['welcome-section', 'projects-section', 'about-me', 'contact-me'];
 
-// ─── Calcula dónde debe quedar la punta para cada sección ────────────────────
+// ─── Calculate initial layout ──────────────────────────────────
 function calculateLayout() {
-  const welcome  = document.getElementById('welcome-section');
-  const projects = document.getElementById('projects-section');
-  const aboutMe  = document.getElementById('about-me');
-  const contactMe = document.getElementById('contact-me');
-  const main     = document.querySelector('main');
+  const welcome = document.getElementById('welcome-section');
+  const main    = document.querySelector('main');
   if (!welcome || !main) return;
 
   const scrollY    = window.scrollY;
-  const vh         = window.innerHeight;
-  const mainTop    = main.getBoundingClientRect().top    + scrollY;
-  const wBottom    = welcome.getBoundingClientRect().bottom + scrollY; // pie de welcome
-
-  // La línea arranca justo en el pie de welcome-section
-  lineTop.value = wBottom - mainTop - 100;
-
-  // Offset: la punta se detiene al 88 % de la pantalla cuando la sección entra
-  // → target_height = top_seccion - wBottom - vh * 0.12
-  if (projects) {
-    const pt = projects.getBoundingClientRect().top + scrollY;
-    targets.projects = pt + wBottom;
-    // targets.projects = pt - wBottom 
-  }
-  if (aboutMe) {
-    const at = aboutMe.getBoundingClientRect().top + scrollY;
-    const ah = aboutMe.offsetHeight;
-    // Para about-me la línea llega hasta cerca del centro de la sección
-    targets.about = at + ah * 0.5 - wBottom;
-  }
-  if (contactMe) {
-    // Para contact-me la línea llega hasta cerca del centro de la sección
-    const ct = contactMe.getBoundingClientRect().top   + scrollY;
-    const ch = contactMe.offsetHeight;
-    targets.contact = ct + ch * 0.5 - wBottom;
-  }
-
-  console.log('Layout calculated:', { lineTop: lineTop.value, targets });
+  mainTopOffset    = main.getBoundingClientRect().top + scrollY;
+  const wBottom    = welcome.getBoundingClientRect().bottom + scrollY;
+  lineTop.value    = wBottom - mainTopOffset;
 }
 
-// ─── Actualiza la altura activa según las secciones visibles ─────────────────
+// ─── Scroll-driven: update line height + active side ──────────
 function updateLine() {
-  const projects  = document.getElementById('projects-section');
-  const aboutMe   = document.getElementById('about-me');
-  const contactMe = document.getElementById('contact-me');
-  const vh = window.innerHeight;
+  const scrollY = window.scrollY;
+  const vh      = window.innerHeight;
 
-  // Una sección "entró" cuando su top cruzó el 95 % de la pantalla (casi viewport bottom)
-  const threshold = vh * 0.95;
+  // Line tip tracks 60% down viewport → scroll-driven height
+  const tipDoc = scrollY + vh * 0.6;
+  lineHeight.value = Math.max(0, tipDoc - (mainTopOffset + lineTop.value));
 
-  const projectsIn = projects  && projects.getBoundingClientRect().top  < threshold;
-  const aboutIn    = aboutMe   && aboutMe.getBoundingClientRect().top   < threshold;
-  const contactIn  = contactMe && contactMe.getBoundingClientRect().top < threshold;
-
-  // El target más avanzado que corresponde determina la altura
-  let newHeight = 0;
-  if      (contactIn)  newHeight = targets.contact;
-  else if (aboutIn)    newHeight = targets.about;
-  else if (projectsIn) newHeight = targets.projects;
-
-  lineHeight.value = Math.max(0, newHeight);
+  // Active section: last one whose top has passed 50% of viewport
+  let newIndex = 0;
+  for (let i = SECTIONS.length - 1; i >= 0; i--) {
+    const el = document.getElementById(SECTIONS[i]);
+    if (!el) continue;
+    if (el.getBoundingClientRect().top < vh * 0.5) {
+      newIndex = i;
+      break;
+    }
+  }
+  activeIndex.value = newIndex;
 }
 
-// ─── Lifecycle ───────────────────────────────────────────────────────────────
+// ─── Line alternates left / right per section ──────────────────
+const lineLeft = computed(() =>
+  activeIndex.value % 2 === 0 ? '20px' : 'calc(100% - 21px)'
+);
+
+// ─── Lifecycle ─────────────────────────────────────────────────
 onMounted(async () => {
-  await nextTick();          // espera a que el DOM esté completamente pintado
+  await nextTick();
   calculateLayout();
   updateLine();
-
-  window.addEventListener('scroll', updateLine,       { passive: true });
-  window.addEventListener('resize', handleResize,     { passive: true });
+  window.addEventListener('scroll', updateLine, { passive: true });
+  window.addEventListener('resize', handleResize, { passive: true });
 });
 
 onUnmounted(() => {
@@ -99,46 +74,51 @@ function handleResize() {
 </script>
 
 <template>
-  <!-- Fondo con gradiente superior -->
+  <!-- ── Background layers ── -->
+  <div class="fixed inset-0 z-[-3] bg-pixel-bg"></div>
+  <div class="fixed inset-0 z-[-2] dot-grid opacity-60 pointer-events-none"></div>
   <div
-    class="absolute top-0 z-[-2] min-h-screen w-full bg-gray-950
-    bg-[radial-gradient(ellipse_80%_80%_at_50%_-28%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    class="fixed inset-0 z-[-1] pointer-events-none"
+    style="background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px);"
+  ></div>
+  <!-- CRT vignette frame -->
+  <div
+    class="fixed inset-0 z-40 pointer-events-none"
+    style="background: radial-gradient(ellipse 90% 90% at 50% 50%, transparent 55%, rgba(0,0,0,0.7) 100%);"
   ></div>
 
   <PortfolioHeader />
 
   <main class="relative">
 
-    <!--
-      ── Línea de progreso ──────────────────────────────────────────────────────
-      La altura cambia con CSS transition → crea la animación top-to-bottom
-      al bajar y bottom-to-top al volver a subir.
-    -->
+    <!-- ── Scroll-driven progress line ── -->
     <div
-      class="absolute left-[171px] w-0.5 z-50 pointer-events-none
-             bg-gradient-to-b from-transparent via-violet-500/30 to-violet-700"
-      style="transition: height 0.75s cubic-bezier(0.4, 0, 0.2, 1);"
-      :style="{ top: `${lineTop}px`, height: `${lineHeight}px` }"
+      class="progress-line absolute w-0.5 z-50 pointer-events-none"
+      :style="{
+        top: `${lineTop}px`,
+        height: `${lineHeight}px`,
+        left: lineLeft
+      }"
     >
-      <!-- Punta con brillo — solo visible cuando la línea tiene altura real -->
+      <!-- Pixel dot at tip -->
       <Transition name="tip-fade">
         <div
           v-if="lineHeight > 20"
-          class="absolute bottom-0 left-1/2 -translate-x-1/2
-                 w-2 h-3 rounded-full bg-violet-700"
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3"
+          style="background: #bd00ff; box-shadow: 0 0 8px #bd00ff, 0 0 20px rgba(189,0,255,0.6);"
         ></div>
       </Transition>
     </div>
 
-    <!-- Secciones ─────────────────────────────────────────────────────────── -->
+    <!-- ── Sections ── -->
     <SectionContainer
-      class="h-screen flex flex-col justify-center items-start gap-5"
+      class="h-screen flex flex-col justify-center items-start"
       id="welcome-section"
     >
       <Welcome />
     </SectionContainer>
 
-    <div class="bg-gray-950">
+    <div>
       <SectionContainer id="projects-section">
         <Projects />
       </SectionContainer>
@@ -147,25 +127,17 @@ function handleResize() {
         <AboutMe />
       </SectionContainer>
 
-      <div class="relative bg-gray-950">
-        <!-- Gradiente inferior -->
-        <div
-          class="absolute inset-0 z-0 pointer-events-none
-          bg-[radial-gradient(ellipse_80%_80%_at_50%_135%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-        ></div>
-        <SectionContainer
-          class="h-screen flex flex-col justify-center items-center gap-5"
-          id="contact-me"
-        >
-          <ContactMe />
-        </SectionContainer>
-      </div>
+      <SectionContainer
+        class="h-screen flex flex-col justify-center items-center"
+        id="contact-me"
+      >
+        <ContactMe />
+      </SectionContainer>
     </div>
 
   </main>
 </template>
 
-<!-- Fade suave para la punta al aparecer/desaparecer -->
 <style scoped>
 .tip-fade-enter-active,
 .tip-fade-leave-active {

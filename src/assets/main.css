@@ -1,66 +1,350 @@
-@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');@import "tailwindcss";
+/* ── Google Fonts: Retro-Futuristic + Pixel Art ─────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@import "tailwindcss";
 @import 'primeicons/primeicons.css';
 
+/* ── Tailwind v4 Design Tokens ──────────────────────────────── */
+@theme {
+  --color-terminal: #bd00ff;
+  --color-cyber: #00f5ff;
+  --color-retro-amber: #ff007f;
+  --color-pixel-bg: #0a0a0f;
+  --color-pixel-surface: #0f0f1a;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-retro: 'Share Tech Mono', 'Courier New', monospace;
+}
+
+/* ── Base ────────────────────────────────────────────────────── */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  background-color: #0a0a0f;
+  color: #c8c8c8;
 }
 
-.logo a {
-    font-family: 'Moirai One';
-    font-weight: 100;
+/* ── Keyframe Animations ─────────────────────────────────────── */
+@keyframes blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
-.dev-animation {
-    font-family: 'Moirai One';
-    position: relative;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.dev-animation::before {
-    content: '';
-    animation: appearing-letters 1s infinite;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.dev-animation::after {
-    content: '';
-    position: absolute;
-    width: calc(100% + 8px);
-    background: var(--color-gray-950);
-    /* background: white; */
-    height: 120%;
-    /* border-left: 3px solid var(--color-slate-950); */
-    border-left: 3px solid var(--color-yellow-400);
-    right: -8px;
-    animation: cursor 0.8s infinite, typing 20s steps(20) infinite
+@keyframes pixelGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px #bd00ff, 0 0 8px rgba(189, 0, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 10px #bd00ff, 0 0 24px rgba(189, 0, 255, 0.5);
+  }
 }
 
-@keyframes appearing-letters {
-    0%, 100% { content: 'Software Developer.' }
+@keyframes crtFlicker {
+
+  0%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0.87;
+  }
+
+  96% {
+    opacity: 1;
+  }
+
+  98% {
+    opacity: 0.92;
+  }
+
+  99% {
+    opacity: 1;
+  }
 }
 
-@keyframes cursor {
-    to{ border-left: 2px solid var(--font-color) }
+@keyframes pixelFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
-@keyframes typing {
-    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% { 
-        width: 0; 
-    }
-    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
-        width: calc(100% + 8px);
-    }
+@keyframes typeExpand {
+  from {
+    max-width: 0;
+  }
+
+  to {
+    max-width: 22ch;
+  }
 }
 
+@keyframes caretBlink {
+
+  0%,
+  50% {
+    border-right-color: #bd00ff;
+  }
+
+  51%,
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes bootLine {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glitchShift {
+
+  0%,
+  100% {
+    transform: translate(0);
+    clip-path: none;
+  }
+
+  20% {
+    transform: translate(-2px, 1px);
+  }
+
+  40% {
+    transform: translate(2px, -1px);
+  }
+
+  60% {
+    transform: translate(-1px, 0);
+  }
+
+  80% {
+    transform: translate(1px, 1px);
+  }
+}
+
+/* ── Animation Utility Classes ───────────────────────────────── */
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease both;
+}
+
+.animate-flicker {
+  animation: crtFlicker 10s linear infinite;
+}
+
+.animate-float {
+  animation: pixelFloat 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: pixelGlow 2.5s ease-in-out infinite;
+}
+
+/* ── Text Glow ────────────────────────────────────────────────── */
+.text-glow-terminal {
+  text-shadow: 0 0 8px #bd00ff, 0 0 18px rgba(189, 0, 255, 0.4);
+}
+
+.text-glow-cyber {
+  text-shadow: 0 0 8px #00f5ff, 0 0 18px rgba(0, 245, 255, 0.4);
+}
+
+/* ── Pixel Border (box-shadow technique) ──────────────────────── */
+.pixel-border {
+  box-shadow:
+    0 0 0 2px #bd00ff,
+    0 0 16px rgba(189, 0, 255, 0.25);
+  border-radius: 0 !important;
+}
+
+.pixel-border-cyan {
+  box-shadow:
+    0 0 0 2px #00f5ff,
+    0 0 16px rgba(0, 245, 255, 0.2);
+  border-radius: 0 !important;
+}
+
+.pixel-border-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.pixel-border-hover:hover {
+  box-shadow:
+    0 0 0 2px #bd00ff,
+    0 0 24px rgba(189, 0, 255, 0.5);
+}
+
+/* ── Terminal Window Component ────────────────────────────────── */
+.terminal-window {
+  background: rgba(10, 10, 15, 0.93);
+  border: 2px solid #bd00ff;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.05) 3px,
+      rgba(0, 0, 0, 0.05) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.terminal-header {
+  background: #bd00ff;
+  color: #0a0a0f;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.05em;
+}
+
+.terminal-body {
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Dot-Grid Background ──────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 0, 127, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Scroll-Reveal ────────────────────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* ── Progress Line ────────────────────────────────────────────── */
+.progress-line {
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(189, 0, 255, 0.15) 20%,
+      rgba(189, 0, 255, 0.6) 80%,
+      #bd00ff 100%);
+  transition:
+    left 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    right 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Typewriter Line ──────────────────────────────────────────── */
+.typewriter-line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #bd00ff;
+  max-width: 0;
+  animation:
+    typeExpand 2s steps(20, end) 0.6s forwards,
+    caretBlink 0.75s step-end 0.6s infinite;
+}
+
+/* ── Boot Line Animation (for contact section) ────────────────── */
+.boot-line {
+  opacity: 0;
+  animation: bootLine 0.4s ease forwards;
+}
+
+/* ── Reduced Motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
