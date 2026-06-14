@@ -1,23 +1,13 @@
 <template>
   <div class="relative flex flex-col justify-center items-start w-full h-full gap-6 md:gap-7">
 
-    <!-- ASCII corner decorations -->
-    <div
-      class="absolute top-6 left-0 right-0 font-retro text-terminal/20 text-xs leading-none pointer-events-none select-none hidden md:block"
-      aria-hidden="true"
-    >┌────────────────────────────────────────────────────────────────┐</div>
-    <div
-      class="absolute bottom-6 left-0 right-0 font-retro text-terminal/20 text-xs leading-none pointer-events-none select-none hidden md:block"
-      aria-hidden="true"
-    >└────────────────────────────────────────────────────────────────┘</div>
-
     <!-- ── System status bar ── -->
     <div
       class="animate-slide-up font-retro text-xs text-terminal/60 tracking-widest"
       style="animation-delay: 0ms;"
     >
-      <span class="blink mr-2 text-terminal">●</span>
-      SYS:ONLINE &nbsp;|&nbsp; USER:AGUSTIN_OLIVIERI &nbsp;|&nbsp; STATUS:AVAILABLE
+      <span class="mr-2 text-terminal">●</span>
+      SYS:ONLINE &nbsp;|&nbsp; STATUS:AVAILABLE
     </div>
 
     <!-- ── Avatar + ID card ── -->
@@ -26,7 +16,7 @@
       <!-- Pixel avatar with terminal border -->
       <div class="relative shrink-0">
         <div
-          class="w-20 h-20 md:w-24 md:h-24 overflow-hidden"
+          class="w-52 h-52 overflow-hidden rounded-full"
           style="
             box-shadow:
               0 0 0 3px #0a0a0f,
@@ -41,12 +31,7 @@
             class="w-full h-full object-cover"
           />
         </div>
-        <!-- Online indicator -->
-        <div
-          class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-terminal blink"
-          style="box-shadow: 0 0 8px #bd00ff;"
-          aria-label="Online"
-        ></div>
+
       </div>
 
       <!-- Name block -->
@@ -55,7 +40,17 @@
         <div class="font-retro text-3xl md:text-4xl text-white font-bold leading-tight tracking-tight">
           AGUSTIN<br />OLIVIERI
         </div>
-        <div class="font-retro text-cyber text-sm mt-1 tracking-wider">ARG • Software Eng. Student</div>
+        <div class="font-retro text-cyber text-sm tracking-wider flex items-center gap-1.5">
+          <span class="mt-0.5">ARG</span>
+          <svg class="w-4.5 h-3 shrink-0 rounded-xs" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="9" height="2" fill="#74ACDF"/>
+            <rect y="2" width="9" height="2" fill="#FFFFFF"/>
+            <rect y="4" width="9" height="2" fill="#74ACDF"/>
+            <circle cx="4.5" cy="3" r="0.5" fill="#F6B40E"/>
+            <path d="M4.5,2.2 L4.5,3.8 M3.7,3 L5.3,3 M3.9,2.4 L5.1,3.6 M3.9,3.6 L5.1,2.4" stroke="#F6B40E" stroke-width="0.15"/>
+            <circle cx="4.5" cy="3" r="0.25" fill="#E58C0A"/>
+          </svg>
+        </div>
       </div>
     </div>
 
@@ -63,7 +58,7 @@
     <div class="animate-slide-up" style="animation-delay: 160ms;">
       <div class="font-retro text-xs text-terminal/50 mb-1">$&gt; ./role.sh</div>
       <div class="font-retro text-2xl md:text-3xl text-white typewriter-line">
-        Software Developer
+        Information Systems Engineering Student
       </div>
     </div>
 
@@ -72,11 +67,8 @@
       <div class="border border-terminal/40 px-3 py-1.5 font-retro text-xs hover:border-terminal/80 hover:bg-terminal/5 transition-all duration-300">
         <span class="text-terminal">●</span>&nbsp;Full-Stack Dev
       </div>
-      <div class="border border-cyber/40 px-3 py-1.5 font-retro text-xs hover:border-cyber/80 hover:bg-cyber/5 transition-all duration-300">
-        <span class="text-cyber">●</span>&nbsp;Open Source
-      </div>
       <div class="border border-retro-amber/40 px-3 py-1.5 font-retro text-xs hover:border-retro-amber/80 hover:bg-retro-amber/5 transition-all duration-300">
-        <span class="text-retro-amber">●</span>&nbsp;Open to Work
+        <span class="text-retro-amber">●</span>&nbsp;Seeking an Intership
       </div>
     </div>
 
@@ -84,11 +76,10 @@
     <div class="animate-slide-up" style="animation-delay: 320ms;">
       <a
         href="#projects-section"
-        class="group font-retro text-sm text-terminal hover:text-white transition-colors duration-300 flex items-center gap-2"
+        class="group font-retro text-sm text-terminal hover:text-white transition-colors duration-300 flex items-center gap-2 animate-text-pulse"
       >
         <span class="text-terminal/60 group-hover:text-terminal transition-colors">&gt;_</span>
         VIEW_MY_PROJECTS()
-        <span class="blink text-terminal">█</span>
       </a>
     </div>
 
@@ -98,19 +89,17 @@
 <style scoped>
 /* Typewriter: expands from 0 to full width character by character */
 .typewriter-line {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
   border-right: 3px solid #bd00ff;
-  max-width: 0;
   animation:
-    typeExpand 2s steps(20, end) 0.8s forwards,
-    caretBlink 0.75s step-end 0.8s infinite;
+    typeExpand 3s steps(50) infinite,
+    caretBlink 0.65s step-end 0.8s infinite;
 }
 
 @keyframes typeExpand {
-  from { max-width: 0; }
-  to   { max-width: 20ch; }
+  0% { max-width: 0; }
+  35% { max-width: 101%; }
+  65% { max-width: 101%; }
+  100% { max-width: 0; }
 }
 @keyframes caretBlink {
   0%, 50%   { border-right-color: #bd00ff; }
@@ -123,5 +112,23 @@
 }
 .animate-slide-up {
   animation: slideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 0.55;
+    text-shadow: 0 0 2px rgba(189, 0, 255, 0.2);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(189, 0, 255, 0.8), 0 0 15px rgba(189, 0, 255, 0.4);
+  }
+}
+.animate-text-pulse {
+  animation: textPulse 2s ease-in-out infinite;
+}
+.animate-text-pulse:hover {
+  opacity: 1;
+  text-shadow: 0 0 12px rgba(189, 0, 255, 0.8), 0 0 20px rgba(189, 0, 255, 0.4);
 }
 </style>

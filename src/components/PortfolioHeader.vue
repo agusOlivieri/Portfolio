@@ -1,10 +1,9 @@
 <script setup>
-import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { ref } from 'vue'
+import { useActiveSection } from '@/composables/useActiveSection'
 
-const menuOpen      = ref(false)
-const currentSection = ref('#welcome-section')
-
-let observer = null
+const menuOpen = ref(false)
+const currentSection = useActiveSection().activeSection
 
 const navLinks = [
   { id: '#welcome-section',  label: '[HOME]' },
@@ -12,27 +11,6 @@ const navLinks = [
   { id: '#about-me',         label: '[ABOUT]' },
   { id: '#contact-me',       label: '[CONTACT]' },
 ]
-
-onMounted(() => {
-  const sections = document.querySelectorAll('section[id]')
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          currentSection.value = `#${entry.target.id}`
-        }
-      })
-    },
-    { root: null, threshold: 0.3 }
-  )
-
-  sections.forEach((sec) => observer.observe(sec))
-})
-
-onBeforeUnmount(() => {
-  if (observer) observer.disconnect()
-})
 </script>
 
 <template>

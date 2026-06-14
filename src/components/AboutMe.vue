@@ -1,4 +1,5 @@
 <script setup>
+import { useActiveSection } from '@/composables/useActiveSection';
 import TechnologyCard from '@/components/TechnologyCard.vue';
 import Vue from '@/assets/icons/Vue.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
@@ -17,6 +18,8 @@ const TECHNOLOGIES = {
   TAILWIND: { name: 'Tailwind CSS',   class: 'border-cyber/30',       icon: Tailwind },
   JAVASCRIPT: { name: 'JavaScript',   class: 'border-retro-amber/30', icon: Javascript },
 }
+
+const { activeSection } = useActiveSection();
 </script>
 
 <template>
@@ -24,18 +27,24 @@ const TECHNOLOGIES = {
 
     <!-- Section header -->
     <div class="flex items-center gap-4 mb-10">
-      <div class="font-pixel text-[9px] text-terminal tracking-wider">
+      <div
+        class="font-pixel text-[9px] text-terminal tracking-wider transition-all duration-300 transform origin-left"
+        :class="{ 'scale-110 text-glow-terminal brightness-125': activeSection === '#about-me' }"
+      >
         &gt; ABOUT.EXE
       </div>
       <div class="flex-1 h-px bg-terminal/20"></div>
     </div>
 
     <!-- Terminal window for bio -->
-    <div class="terminal-window mb-10">
+    <div class="terminal-window mb-10 reveal-fade">
       <div class="terminal-header">
         <span>■</span>
         <span>PROFILE.LOG</span>
-        <span class="ml-auto blink text-pixel-bg/70 text-[10px]">█</span>
+        <div class="ml-auto flex gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+        </div>
       </div>
       <div class="terminal-body space-y-4 relative z-10">
         <p class="font-retro text-sm md:text-base leading-relaxed text-gray-300">

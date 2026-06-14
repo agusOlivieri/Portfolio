@@ -1,9 +1,12 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue';
+import { useActiveSection } from '@/composables/useActiveSection';
 import Project from '@/components/Project.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
 import Vue from '@/assets/icons/Vue.vue';
 import sintacc from '@/assets/images/sintacc-project.png';
+
+const { activeSection } = useActiveSection();
 
 const TAGS = {
   TAILWIND: { name: 'Tailwind CSS', class: 'bg-[#003159] text-white', icon: Tailwind },
@@ -39,38 +42,18 @@ const projects = [
   },
 ]
 
-// ─── Scroll-reveal for project cards ──────────────────────────
-let revealObserver = null
-
-onMounted(() => {
-  const cards = document.querySelectorAll('.project-card-wrapper')
-
-  revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          revealObserver.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.12 }
-  )
-
-  cards.forEach((el) => revealObserver.observe(el))
-})
-
-onBeforeUnmount(() => {
-  revealObserver?.disconnect()
-})
+// ─── Scroll-reveal logic moved to App.vue globally ───
 </script>
 
 <template>
-  <div class="pt-20 pb-8">
+  <div class="pt-16">
 
     <!-- Section header -->
     <div class="flex items-center gap-4 mb-10">
-      <div class="font-pixel text-[9px] text-terminal tracking-wider">
+      <div
+        class="font-pixel text-[9px] text-terminal tracking-wider transition-all duration-300 transform origin-left"
+        :class="{ 'scale-110 text-glow-terminal brightness-125': activeSection === '#projects-section' }"
+      >
         &gt; PROJECT_FILES/
       </div>
       <div class="flex-1 h-px bg-terminal/20"></div>

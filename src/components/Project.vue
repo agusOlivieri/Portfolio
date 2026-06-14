@@ -35,8 +35,7 @@ onBeforeUnmount(() => cardObserver?.disconnect())
 <template>
   <article
     ref="cardRef"
-    class="project-card-wrapper group relative mb-16 md:mb-24"
-    :class="index % 2 === 0 ? 'reveal-left' : 'reveal-right'"
+    class="project-card-wrapper group relative mb-16 md:mb-24 reveal-fade"
   >
 
     <!-- Terminal file card -->

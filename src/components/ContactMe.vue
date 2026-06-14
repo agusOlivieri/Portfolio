@@ -1,4 +1,8 @@
 <script setup>
+import { useActiveSection } from '@/composables/useActiveSection';
+
+const { activeSection } = useActiveSection();
+
 // Contact boot lines — appear via staggered CSS animation delays
 const bootLines = [
   { delay: '0ms',   color: 'text-terminal',     text: '$> INITIALIZING CONTACT_PROTOCOL.EXE...' },
@@ -15,23 +19,25 @@ const bootLines = [
 
     <!-- Section header -->
     <div class="flex items-center gap-4 mb-8">
-      <div class="font-pixel text-[9px] text-terminal tracking-wider">
+      <div
+        class="font-pixel text-[9px] text-terminal tracking-wider transition-all duration-300 transform origin-left"
+        :class="{ 'scale-110 text-glow-terminal brightness-125': activeSection === '#contact-me' }"
+      >
         &gt; CONTACT.EXE
       </div>
       <div class="flex-1 h-px bg-terminal/20"></div>
     </div>
 
     <!-- Terminal console window -->
-    <div class="terminal-window w-full">
+    <div class="terminal-window w-full reveal-fade">
 
       <!-- Window header bar -->
       <div class="terminal-header">
         <span>■</span>
         <span>CONTACT_TERMINAL v1.0.0</span>
         <div class="ml-auto flex gap-2">
-          <div class="w-2.5 h-2.5 bg-red-500/80"></div>
-          <div class="w-2.5 h-2.5 bg-retro-amber/80"></div>
-          <div class="w-2.5 h-2.5 bg-terminal/80"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
         </div>
       </div>
 

@@ -6,6 +6,9 @@ import SectionContainer from '@/components/SectionContainer.vue';
 import AboutMe from '@/components/AboutMe.vue';
 import ContactMe from '@/components/ContactMe.vue';
 import { onMounted, onUnmounted, ref, nextTick, computed } from 'vue';
+import { useActiveSection } from '@/composables/useActiveSection';
+
+const { registerObserver, cleanupObserver } = useActiveSection();
 
 const lineTop    = ref(0);
 const lineHeight = ref(0);
@@ -54,10 +57,28 @@ const lineLeft = computed(() =>
 );
 
 // ─── Lifecycle ─────────────────────────────────────────────────
+let revealFadeObserver = null;
+
 onMounted(async () => {
   await nextTick();
   calculateLayout();
   updateLine();
+  registerObserver();
+  
+  // Set up global reveal observer for fade-in elements
+  revealFadeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          revealFadeObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.12 }
+  )
+  document.querySelectorAll('.reveal-fade').forEach((el) => revealFadeObserver.observe(el));
+
   window.addEventListener('scroll', updateLine, { passive: true });
   window.addEventListener('resize', handleResize, { passive: true });
 });
@@ -65,6 +86,8 @@ onMounted(async () => {
 onUnmounted(() => {
   window.removeEventListener('scroll', updateLine);
   window.removeEventListener('resize', handleResize);
+  cleanupObserver();
+  revealFadeObserver?.disconnect();
 });
 
 function handleResize() {

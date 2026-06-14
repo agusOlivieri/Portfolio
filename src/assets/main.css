@@ -235,7 +235,7 @@ body {
 .terminal-window {
   background: rgba(10, 10, 15, 0.93);
   border: 2px solid #bd00ff;
-  border-radius: 0;
+  border-radius: 5px;
   position: relative;
   overflow: hidden;
 }
@@ -254,7 +254,7 @@ body {
 }
 
 .terminal-header {
-  background: #bd00ff;
+  background: #5e0280;
   color: #0a0a0f;
   font-family: 'Press Start 2P', monospace;
   font-size: 8px;
@@ -286,6 +286,11 @@ body {
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
 .reveal-left {
   opacity: 0;
   transform: translateX(-48px);
@@ -298,6 +303,7 @@ body {
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.reveal-fade.is-visible,
 .reveal-on-scroll.is-visible,
 .reveal-left.is-visible,
 .reveal-right.is-visible {
