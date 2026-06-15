@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import Github from '@/assets/icons/Github.vue';
+import Live from '@/assets/icons/Live.vue';
 
 const props = defineProps({
   title:       { type: String },
@@ -80,18 +81,19 @@ onBeforeUnmount(() => cardObserver?.disconnect())
                      hover:text-pixel-bg hover:bg-terminal
                      transition-all duration-200"
             >
-              <Github class="size-3" />
+              <Github class="size-3 mb-0.5" />
               [CODE]
             </a>
             <a
-              :href="liveLink || githubLink"
+              :href="liveLink"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 font-retro text-[11px] px-3 py-1
+              class="inline-flex items-center gap-1 font-retro text-[11px] px-3
                      text-cyber/80 border border-cyber/30
                      hover:text-pixel-bg hover:bg-cyber
                      transition-all duration-200"
             >
+              <Live class="size-4 mb-0.5" />
               [LIVE]
             </a>
           </div>
