@@ -6,8 +6,11 @@ defineProps({
 })
 </script>
 <template>
- <svg viewBox="0 0 256 221" :class="classes" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z" fill="#41B883"/><path d="m0 0 128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z" fill="#41B883"/><path d="M50.56 0 128 133.12 204.8 0h-47.36L128 51.2 97.92 0H50.56Z" fill="#35495E"/></svg>
+ <svg viewBox="0 0 180 180" :class="classes"><mask height="180" id="nextjs_icon_dark__:r8:mask0_408_134" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style="mask-type:alpha"><circle cx="90" cy="90" fill="black" r="90"/></mask><g mask="url(#nextjs_icon_dark__:r8:mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90"/><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#nextjs_icon_dark__:r8:paint0_linear_408_134)"/><rect fill="url(#nextjs_icon_dark__:r8:paint1_linear_408_134)" height="72" width="12" x="115" y="54"/></g><defs><linearGradient gradientUnits="userSpaceOnUse" id="nextjs_icon_dark__:r8:paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="nextjs_icon_dark__:r8:paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient></defs></svg>
 </template>
+  
+    
+    
   
     
     

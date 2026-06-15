@@ -1,22 +1,29 @@
 <script setup>
 import { useActiveSection } from '@/composables/useActiveSection';
+
 import Project from '@/components/Project.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
 import Vue from '@/assets/icons/Vue.vue';
 import Java from '@/assets/icons/Java.vue';
 import Spring from '@/assets/icons/Spring.vue';
+import NextJs from '@/assets/icons/NextJs.vue';
+import Typescript from '@/assets/icons/Typescript.vue';
+import Vercel from '@/assets/icons/Vercel.vue';
+import Supabase from '@/assets/icons/Supabase.vue';
+
 import sintacc from '@/assets/images/sintacc-project.png';
 import saley from '@/assets/images/portada_saley.png'
+import bagues from '@/assets/images/portada_bagues.png'
 
 const { activeSection } = useActiveSection();
 
 const TAGS = {
   TAILWIND: { name: 'Tailwind CSS', class: 'bg-[#003159] text-white', icon: Tailwind },
   VUE:      { name: 'Vue.js',       class: 'bg-gray-800 text-white',  icon: Vue },
-  NEXTJS:   { name: 'Next.js',      class: 'bg-gray-800 text-white',  icon: null },
-  TYPESCRIPT: { name: 'TypeScript', class: 'bg-blue-700 text-white',  icon: null },
-  SUPABASE: { name: 'Supabase',     class: 'bg-[#0a231c] text-[#3ecf8e] border-[#3ecf8e]/30', icon: null },
-  VERCEL:   { name: 'Vercel',       class: 'bg-black text-white',     icon: null },
+  NEXTJS:   { name: 'Next.js',      class: 'bg-gray-800 text-white',  icon: NextJs },
+  TYPESCRIPT: { name: 'TypeScript', class: 'bg-blue-700/40 text-white',  icon: Typescript },
+  SUPABASE: { name: 'Supabase',     class: 'bg-[#0a231c] text-[#3ecf8e] border-[#3ecf8e]/30', icon: Supabase },
+  VERCEL:   { name: 'Vercel',       class: 'bg-black text-white',     icon: Vercel },
   JAVA:   { name: 'Java',       class: 'bg-[#6A1A1A] border-orange-500/60 text-white',     icon: Java},
   SPRING: { name: 'Spring',       class: 'bg-[#1e5a1c] border-green-500/60 text-white',     icon: Spring},
 }
@@ -26,7 +33,7 @@ const projects = [
     title: 'Good Vibes | E-commerce',
     description: '',
     technologies: [TAGS.NEXTJS, TAGS.TYPESCRIPT, TAGS.SUPABASE, TAGS.TAILWIND, TAGS.VERCEL],
-    img: sintacc,
+    img: bagues,
     github: 'https://github.com/agusOlivieri/bagues-ecommerce',
     live: 'https://bagues-ecommerce.vercel.app/',
   },
