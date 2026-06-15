@@ -1,7 +1,15 @@
 <script setup>
+import { ref, watch } from 'vue';
 import { useActiveSection } from '@/composables/useActiveSection';
 
 const { activeSection } = useActiveSection();
+const hasBooted = ref(false);
+
+watch(activeSection, (newSection) => {
+  if (newSection === '#contact-me' && !hasBooted.value) {
+    hasBooted.value = true;
+  }
+}, { immediate: true });
 
 // Contact boot lines — appear via staggered CSS animation delays
 const bootLines = [
@@ -46,17 +54,18 @@ const bootLines = [
         <div
           v-for="(line, i) in bootLines"
           :key="i"
-          class="boot-line font-retro text-xs md:text-sm"
-          :class="line.color"
-          :style="`animation-delay: ${line.delay};`"
+          class="font-retro text-xs md:text-sm opacity-0"
+          :class="[line.color, { 'boot-line': hasBooted }]"
+          :style="hasBooted ? `animation-delay: ${line.delay};` : ''"
         >
           {{ line.text }}
         </div>
 
         <!-- Channels -->
         <div
-          class="boot-line mt-6 space-y-3"
-          style="animation-delay: 2400ms;"
+          class="mt-6 space-y-3 opacity-0"
+          :class="{ 'boot-line': hasBooted }"
+          :style="hasBooted ? 'animation-delay: 2400ms;' : ''"
         >
           <!-- LinkedIn -->
           <a
@@ -108,8 +117,9 @@ const bootLines = [
 
         <!-- Blinking cursor prompt at end -->
         <div
-          class="boot-line font-retro text-sm text-terminal/50 mt-4 flex items-center gap-1"
-          style="animation-delay: 2800ms;"
+          class="font-retro text-sm text-terminal/50 mt-4 flex items-center gap-1 opacity-0"
+          :class="{ 'boot-line': hasBooted }"
+          :style="hasBooted ? 'animation-delay: 2800ms;' : ''"
         >
           $&gt; <span class="blink text-terminal">█</span>
         </div>

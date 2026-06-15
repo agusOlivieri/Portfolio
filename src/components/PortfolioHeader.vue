@@ -22,7 +22,7 @@ const navLinks = [
 
       <!-- Logo / System ID -->
       <div class="font-pixel text-terminal text-[8px] md:text-[9px] tracking-wider">
-        <span class="blink mr-1">▶</span>AO://PORTFOLIO
+        AO://PORTFOLIO
       </div>
 
       <!-- Hamburger (mobile) -->

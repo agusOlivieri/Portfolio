@@ -1,10 +1,12 @@
 <script setup>
-import { onMounted, onBeforeUnmount } from 'vue';
 import { useActiveSection } from '@/composables/useActiveSection';
 import Project from '@/components/Project.vue';
 import Tailwind from '@/assets/icons/Tailwind.vue';
 import Vue from '@/assets/icons/Vue.vue';
+import Java from '@/assets/icons/Java.vue';
+import Spring from '@/assets/icons/Spring.vue';
 import sintacc from '@/assets/images/sintacc-project.png';
+import saley from '@/assets/images/portada_saley.png'
 
 const { activeSection } = useActiveSection();
 
@@ -15,28 +17,30 @@ const TAGS = {
   TYPESCRIPT: { name: 'TypeScript', class: 'bg-blue-700 text-white',  icon: null },
   SUPABASE: { name: 'Supabase',     class: 'bg-[#0a231c] text-[#3ecf8e] border-[#3ecf8e]/30', icon: null },
   VERCEL:   { name: 'Vercel',       class: 'bg-black text-white',     icon: null },
+  JAVA:   { name: 'Java',       class: 'bg-[#6A1A1A] border-orange-500/60 text-white',     icon: Java},
+  SPRING: { name: 'Spring',       class: 'bg-[#1e5a1c] border-green-500/60 text-white',     icon: Spring},
 }
 
 const projects = [
   {
-    title: 'Good Vibes ✦ Bagues Online Store',
-    description: 'A lightweight e-commerce platform for a beauty and wellness brand. Customers can browse the public catalog with category and brand filters, view featured products in an animated slider, and place orders directly via WhatsApp. The admin panel, protected with Google OAuth, allows full product and combo management with built-in image uploads.',
+    title: 'Good Vibes | E-commerce',
+    description: '',
     technologies: [TAGS.NEXTJS, TAGS.TYPESCRIPT, TAGS.SUPABASE, TAGS.TAILWIND, TAGS.VERCEL],
     img: sintacc,
     github: 'https://github.com/agusOlivieri/bagues-ecommerce',
     live: 'https://bagues-ecommerce.vercel.app/',
   },
   {
-    title: 'Weather Dashboard',
-    description: 'App para consultar el clima en tiempo real usando una API externa.',
-    technologies: [TAGS.TAILWIND],
-    img: sintacc,
+    title: 'Saley',
+    description: '',
+    technologies: [TAGS.TAILWIND, TAGS.NEXTJS, TAGS.TYPESCRIPT, TAGS.SUPABASE, TAGS.VERCEL],
+    img: saley,
     github: 'https://github.com/tuusuario/weather-dashboard',
   },
   {
-    title: 'E-commerce Layout',
-    description: 'Diseño responsivo para una tienda online, con carrito funcional.',
-    technologies: [TAGS.TAILWIND],
+    title: 'Kowledge Checker',
+    description: '',
+    technologies: [TAGS.JAVA, TAGS.SPRING],
     img: sintacc,
     github: 'https://github.com/tuusuario/ecommerce-layout',
   },
@@ -46,7 +50,7 @@ const projects = [
 </script>
 
 <template>
-  <div class="pt-16">
+  <div class="pt-16 flex flex-col gap-2">
 
     <!-- Section header -->
     <div class="flex items-center gap-4 mb-10">

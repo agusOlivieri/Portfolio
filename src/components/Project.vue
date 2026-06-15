@@ -35,7 +35,7 @@ onBeforeUnmount(() => cardObserver?.disconnect())
 <template>
   <article
     ref="cardRef"
-    class="project-card-wrapper group relative mb-16 md:mb-24 reveal-fade"
+    class="project-card-wrapper group relative reveal-fade"
   >
 
     <!-- Terminal file card -->
@@ -58,54 +58,56 @@ onBeforeUnmount(() => cardObserver?.disconnect())
 
       <!-- ── Card header bar ── -->
       <div
-        class="flex items-center justify-between px-4 py-3 border-b"
+        class="flex flex-col px-4 py-3 border-b"
         style="border-color: rgba(189,0,255,0.2); background: rgba(189,0,255,0.04);"
       >
-        <!-- File label -->
-        <div class="flex items-center gap-3 min-w-0">
-          <span class="font-pixel text-[8px] text-terminal/70 shrink-0">
-            FILE_{{ String(index + 1).padStart(2, '0') }}:
-          </span>
+        <div class="flex items-center justify-between pb-2">
+          <!-- File label -->
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="font-pixel text-[8px] text-terminal/70 shrink-0">
+              FILE_{{ String(index + 1).padStart(2, '0') }}:
+            </span>
+          </div>
+  
+          <!-- Action buttons -->
+          <div class="shrink-0 flex gap-2 ml-4">
+            <a
+              :href="githubLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 font-retro text-[11px] px-3 py-1
+                     text-terminal/80 border border-terminal/30
+                     hover:text-pixel-bg hover:bg-terminal
+                     transition-all duration-200"
+            >
+              <Github class="size-3" />
+              [CODE]
+            </a>
+            <a
+              :href="liveLink || githubLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 font-retro text-[11px] px-3 py-1
+                     text-cyber/80 border border-cyber/30
+                     hover:text-pixel-bg hover:bg-cyber
+                     transition-all duration-200"
+            >
+              [LIVE]
+            </a>
+          </div>
+        </div>
           <h3
             class="font-retro text-lg md:text-xl text-white truncate group-hover:text-terminal transition-colors duration-400"
           >
             {{ title }}
           </h3>
-        </div>
-
-        <!-- Action buttons -->
-        <div class="shrink-0 flex gap-2 ml-4">
-          <a
-            :href="githubLink"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 font-retro text-[11px] px-3 py-1
-                   text-terminal/80 border border-terminal/30
-                   hover:text-pixel-bg hover:bg-terminal
-                   transition-all duration-200"
-          >
-            <Github class="size-3" />
-            [CODE]
-          </a>
-          <a
-            :href="liveLink || githubLink"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 font-retro text-[11px] px-3 py-1
-                   text-cyber/80 border border-cyber/30
-                   hover:text-pixel-bg hover:bg-cyber
-                   transition-all duration-200"
-          >
-            [LIVE]
-          </a>
-        </div>
       </div>
 
       <!-- ── Body: image + meta ── -->
-      <div class="flex flex-col md:flex-row">
+      <div class="flex flex-col">
 
         <!-- Image with scanline hover effect -->
-        <div class="md:w-[52%] shrink-0 relative overflow-hidden min-h-[200px] md:min-h-[260px]">
+        <div class="relative overflow-hidden">
           <!-- Fade edge -->
           <div
             class="absolute inset-0 z-10 pointer-events-none hidden md:block"
@@ -143,7 +145,7 @@ onBeforeUnmount(() => cardObserver?.disconnect())
           </p>
 
           <div>
-            <div class="font-pixel text-[8px] text-terminal/50 tracking-widest mb-3">STACK:</div>
+            <div class="font-pixel text-[8px] text-terminal/80 tracking-widest mb-3">STACK:</div>
             <ul class="flex flex-wrap gap-2">
               <li v-for="tech in technologies" :key="tech.name">
                 <span

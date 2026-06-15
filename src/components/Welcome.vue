@@ -6,7 +6,7 @@
       class="animate-slide-up font-retro text-xs text-terminal/60 tracking-widest"
       style="animation-delay: 0ms;"
     >
-      <span class="mr-2 text-terminal">●</span>
+      <span class="mr-2 text-green-600">●</span>
       SYS:ONLINE &nbsp;|&nbsp; STATUS:AVAILABLE
     </div>
 
